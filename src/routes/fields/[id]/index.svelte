@@ -54,7 +54,8 @@
     let gduYear = gdu.get(year);
     if (gduYear) {
       let last = 0;
-      data = gduYear.slice(0, todayDoY + 1).map((v, doy) => {
+
+      data = gduYear.slice(plantDoY, todayDoY + 1).map((v, doy) => {
         last += v;
         return {
           group: 'GDU',
@@ -62,6 +63,16 @@
           value: last
         };
       });
+      
+      gduYear.slice(todayDoY + 1).forEach((v, i) => {
+        last += v
+        const doy = todayDoY + i;
+        data.push({
+          group: 'GDU Forecast',
+          date: addDays(new Date(2021, 0), doy),
+          value: last
+        });
+      })
     }
   }
 </script>
@@ -80,7 +91,7 @@
 
 <FieldCard {field} />
 
-<div class="container p-6">
+<div class="container m-3 p-6">
   <LineChart
     {data}
     options={{
@@ -99,12 +110,18 @@
           scaleType: 'time',
           ticks: {
             rotation: 'always'
-          }
+          },
         },
         left: {
           mapsTo: 'value',
           title: 'Accumlated GDU',
-          scaleType: 'linear'
+          scaleType: 'linear',
+        }
+      },
+      color: {
+        scale: {
+          "GDU": "green",
+          "GDU Forecast": "red",
         }
       },
       timeScale: {
@@ -117,7 +134,7 @@
         }
       },
       curve: 'curveMonotoneX',
-      height: '300px'
+      height: '400px'
     }}
   />
 </div>
