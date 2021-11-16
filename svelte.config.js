@@ -16,7 +16,7 @@ const config = {
   kit: {
     target: '#svelte',
 
-    adapter: adapter({ fallback: 'index.html' }),
+    adapter: adapter({ fallback: '404.html' }),
     prerender: {
       enabled: false
     },

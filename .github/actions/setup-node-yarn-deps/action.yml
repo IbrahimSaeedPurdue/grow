@@ -1,0 +1,33 @@
+name: Setup node, yarn, and install dependencies w/ cache
+description: Runs all setup steps required for a proper node + yarn environment, using cache when possible
+runs:
+  using: composite
+  steps:
+    - name: Setup up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 16
+
+    - name: Get yarn cache directory path
+      id: yarn-cache-dir-path
+      shell: bash
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+
+    - name: Fetch cache
+      uses: actions/cache@v2
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+
+    - name: List versions
+      shell: bash
+      run: |
+        echo "Versions:"
+        echo "node `node --version`"
+        echo "yarn `yarn --version`"
+
+    - name: Install dependencies
+      shell: bash
+      run: yarn install --frozen-lockfile --network-concurrency 1

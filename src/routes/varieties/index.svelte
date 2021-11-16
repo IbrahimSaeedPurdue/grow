@@ -28,9 +28,7 @@
 <Header title="Varieties" />
 
 <div class="form-control mx-2">
-  <label class="label">
-    <span class="label-text">Search variety</span>
-  </label>
+  <span class="text-sm pt-2 pb-1">Search variety</span>
   <label class="input-group">
     <span>
       <svg

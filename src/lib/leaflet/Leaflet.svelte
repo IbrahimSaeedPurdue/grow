@@ -7,7 +7,7 @@
   import 'leaflet/dist/leaflet.css';
 
   export let center: [number, number] = [0, 0];
-  export let zoom: number = 0;
+  export let zoom = 0;
   export let zoomControl = true;
   export let dragable = true;
   export let zoomable = true;

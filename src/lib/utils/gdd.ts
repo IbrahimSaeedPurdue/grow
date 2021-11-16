@@ -28,7 +28,7 @@ export function cornGDU(weatherMap: Map<Year, Weather>): Map<Year, GDU> {
 
   weatherMap.forEach((w, year) => {
     gdu.set(year, cornGDD(w));
-  })
+  });
 
   return gdu;
 }

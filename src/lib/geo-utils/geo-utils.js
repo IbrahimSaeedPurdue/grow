@@ -76,17 +76,17 @@ let cachedTextEncoder = new TextEncoder('utf-8');
 
 const encodeString =
   typeof cachedTextEncoder.encodeInto === 'function'
-    ? function(arg, view) {
-      return cachedTextEncoder.encodeInto(arg, view);
-    }
-    : function(arg, view) {
-      const buf = cachedTextEncoder.encode(arg);
-      view.set(buf);
-      return {
-        read: arg.length,
-        written: buf.length
+    ? function (arg, view) {
+        return cachedTextEncoder.encodeInto(arg, view);
+      }
+    : function (arg, view) {
+        const buf = cachedTextEncoder.encode(arg);
+        view.set(buf);
+        return {
+          read: arg.length,
+          written: buf.length
+        };
       };
-    };
 
 function passStringToWasm0(arg, malloc, realloc) {
   if (realloc === undefined) {
@@ -170,19 +170,19 @@ async function load(module, imports) {
 async function init(input) {
   if (typeof input === 'undefined') {
     // input = new URL('geo-utils_bg.wasm', import.meta.url);
-    input = import.meta.url.replace(".js", "_bg.wasm");
+    input = import.meta.url.replace('.js', '_bg.wasm');
   }
   const imports = {};
   imports.wbg = {};
-  imports.wbg.__wbindgen_json_parse = function(arg0, arg1) {
+  imports.wbg.__wbindgen_json_parse = function (arg0, arg1) {
     var ret = JSON.parse(getStringFromWasm0(arg0, arg1));
     return addHeapObject(ret);
   };
-  imports.wbg.__wbg_new_59cb74e423758ede = function() {
+  imports.wbg.__wbg_new_59cb74e423758ede = function () {
     var ret = new Error();
     return addHeapObject(ret);
   };
-  imports.wbg.__wbg_stack_558ba5917b466edd = function(arg0, arg1) {
+  imports.wbg.__wbg_stack_558ba5917b466edd = function (arg0, arg1) {
     var ret = getObject(arg1).stack;
     var ptr0 = passStringToWasm0(
       ret,
@@ -193,17 +193,17 @@ async function init(input) {
     getInt32Memory0()[arg0 / 4 + 1] = len0;
     getInt32Memory0()[arg0 / 4 + 0] = ptr0;
   };
-  imports.wbg.__wbg_error_4bb6c2a97407129a = function(arg0, arg1) {
+  imports.wbg.__wbg_error_4bb6c2a97407129a = function (arg0, arg1) {
     try {
       console.error(getStringFromWasm0(arg0, arg1));
     } finally {
       wasm.__wbindgen_free(arg0, arg1);
     }
   };
-  imports.wbg.__wbindgen_object_drop_ref = function(arg0) {
+  imports.wbg.__wbindgen_object_drop_ref = function (arg0) {
     takeObject(arg0);
   };
-  imports.wbg.__wbindgen_throw = function(arg0, arg1) {
+  imports.wbg.__wbindgen_throw = function (arg0, arg1) {
     throw new Error(getStringFromWasm0(arg0, arg1));
   };
 

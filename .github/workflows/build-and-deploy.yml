@@ -1,0 +1,36 @@
+name: Build and deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    name: Run build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      # Use our local setup action
+      - uses: ./.github/actions/setup-node-yarn-deps
+
+      - name: Run build
+        run: yarn build
+
+      - name: Check GitHub Pages status
+        uses: crazy-max/ghaction-github-status@v2
+        with:
+          pages_threshold: major_outage
+
+      - name: De deploy to GH pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          build_dir: build
+          fqdn: grow.oatscenter.com
+          jekyll: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

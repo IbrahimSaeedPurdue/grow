@@ -2,6 +2,11 @@
   import { Field } from '$lib/db';
   import Leaflet from '$lib/leaflet/Leaflet.svelte';
   import GeoJson from '$lib/leaflet/GeoJson.svelte';
+  import { goto } from '$app/navigation';
+
+  function redirect_to_field(field: Field) {
+    goto(`/fields/${field.id}`);
+  }
 </script>
 
 <main class="w-full">
@@ -11,7 +16,11 @@
   {:then fields}
     <Leaflet class="h-screen">
       {#each fields as field (field.id)}
-        <GeoJson geojson={field.geojson} zoomTo={true} />
+        <GeoJson
+          geojson={field.geojson}
+          zoomTo={true}
+          on:click={() => redirect_to_field(field)}
+        />
       {/each}
     </Leaflet>
   {/await}

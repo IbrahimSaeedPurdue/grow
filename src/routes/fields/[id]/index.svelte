@@ -22,7 +22,7 @@
 <script lang="ts">
   import '@carbon/charts/styles.min.css';
   import 'carbon-components/css/carbon-components.min.css';
-  import { LineChart, AreaChart } from '@carbon/charts-svelte';
+  import { AreaChart } from '@carbon/charts-svelte';
   import Header from '$lib/components/Header.svelte';
   import FieldCard from '$lib/components/FieldCard.svelte';
   import { weatherStore } from '$stores/weather';
@@ -42,7 +42,7 @@
   const now = new Date('09/15/2021');
   const year = now.getFullYear();
   const todayDoY = getDayOfYear(now);
-  const plantDoY = getDayOfYear(field.datePlanted || now);
+  // const plantDoY = getDayOfYear(field.datePlanted || now);
 
   // Years to base weather insights from
   const years = Array.from(new Array(6), (_, i) => year - i);
@@ -113,11 +113,7 @@
   }
 </script>
 
-<Header
-  title={`Field: ${field.name}`}
-  handleButtonClick={handleOpenEdit}
-  backPath="/fields"
->
+<Header title={`Field: ${field.name}`} backPath="/fields">
   <SettingsIcon
     slot="right"
     class="fill-current h-6 w-6"
@@ -158,7 +154,7 @@
         bottom: {
           title: 'Date',
           mapsTo: 'date',
-          scaleType: 'time',
+          scaleType: ScaleTypes.TIME,
           ticks: {
             rotation: 'always'
           },
@@ -192,7 +188,6 @@
       timeScale: {
         addSpaceOnEdges: 0
       },
-      experimental: true,
       zoomBar: {
         top: {
           enabled: true

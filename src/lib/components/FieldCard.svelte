@@ -41,18 +41,6 @@
       .reduce((a, b) => a + b, 0);
   }
 
-  let gduCumulat: number[] = [];
-  $: {
-    const w = $weather.get(year);
-    if (w) {
-      let gddSum = 0;
-      gduCumulat = cornGDD(w).map((gdd) => {
-        gddSum += gdd;
-        return gddSum;
-      });
-    }
-  }
-
   let avgGdu = 0;
   $: {
     // TODO: We are showing GDU acculmation as of the last weather downloaded compared to the average up to today.

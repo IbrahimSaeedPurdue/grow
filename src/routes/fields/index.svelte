@@ -28,13 +28,13 @@
         class="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52"
       >
         <li>
-          <a>Name</a>
+          <button class="btn btn-ghost">Name</button>
         </li>
         <li>
-          <a>GDU</a>
+          <button class="btn btn-ghost">GDU</button>
         </li>
         <li>
-          <a>Rain</a>
+          <button class="btn btn-ghost">Rain</button>
         </li>
       </ul>
     </div>

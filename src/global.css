@@ -1,9 +1,10 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-progress[value]::-webkit-progress-bar, progress[value]::-webkit-progress-value {
-  border-radius:  0;
+progress[value]::-webkit-progress-bar,
+progress[value]::-webkit-progress-value {
+  border-radius: 0;
 }
 
 progress[value]::-moz-progress-bar {
@@ -13,4 +14,3 @@ progress[value]::-moz-progress-bar {
 progress {
   border-radius: 0;
 }
-

@@ -4,7 +4,7 @@
   import BackArrow from '$lib/icons/BackArrow.svelte';
 
   export let title = '';
-  export let backPath: string | false;
+  export let backPath: string | false = false;
 
   function handleBack() {
     if (backPath) {

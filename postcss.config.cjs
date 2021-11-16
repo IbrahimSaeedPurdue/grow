@@ -18,9 +18,9 @@ const config = {
     fix100vh(),
     autoprefixer(),
     !dev &&
-    cssnano({
-      preset: 'default'
-    })
+      cssnano({
+        preset: 'default'
+      })
   ]
 };
 

@@ -6,7 +6,7 @@ export type FetchWeather = {
   years: number[];
 };
 
-onmessage = async function(e: MessageEvent<FetchWeather>) {
+onmessage = async function (e: MessageEvent<FetchWeather>) {
   const request = e.data;
 
   const today = new Date();
@@ -57,4 +57,4 @@ onmessage = async function(e: MessageEvent<FetchWeather>) {
   }
 };
 
-export { };
+export {};
